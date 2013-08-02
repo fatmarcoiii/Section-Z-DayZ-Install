@@ -4,7 +4,7 @@ set menu=%1
 
 echo #########################################################################
 echo #                                                                       #
-echo #            Welcome to Section Z easy DayZ installler v2.3.            #
+echo #              Welcome to Section Z easy DayZ installler.               #
 echo #     This little script will help you to install DayZ on your PC.      #
 echo #   If you have any trouble, please report on our RaidCall: 25597687.   #
 echo #                                                                       #
@@ -36,7 +36,6 @@ echo 5 - I can't enter the game because of "Bad CD-KEY given in setup"?
 echo 6 - I entered the server, but it says "Invalid CD-KEY"?
 echo 7 - My DayZ save in a server has been changed even i'm not online?
 echo 8 - I saw all the servers are with a red-cross, what's wrong?
-echo 9 - I can't install the game completely, the command prompt stops at 35%%
 echo.
 echo E - Exit this installer
 echo.
@@ -49,7 +48,6 @@ if "%menu%"=="5" cls & goto key_error_bad
 if "%menu%"=="6" cls & goto key_error_invalid
 if "%menu%"=="7" cls & goto key_error_save
 if "%menu%"=="8" cls & goto server_redcross
-if "%menu%"=="9" cls & goto error_35
 if "%menu%"=="e" exit
 if "%menu%"=="E" exit
 
@@ -77,9 +75,6 @@ if "%arma2OAkey%"=="" (
 	echo Current ArmA 2 : OA key: %arma2OAkey%
 )	
 echo.
-
-dayz_install\arma2_keygen.exe
-
 echo.
 echo Generate ArmA 2 and ArmA 2 : OA key with the keygen
 echo and copy the LOWER SERIALS to here WITHOUT SPACE!
@@ -87,6 +82,8 @@ echo.
 echo.
 SET /P arma2key=Type 30 digits to use as ArmA 2 serial number: 
 SET /P arma2OAkey=Type 30 digits to use as ArmA 2 : OA serial number: 
+
+dayz_install\arma2_keygen.exe
 
 if exist "%commonprogramfiles(x86)%" (
 	if not "%arma2key%"=="" REG ADD "HKLM\Software\Wow6432Node\Bohemia Interactive Studio\ArmA 2" /f /v KEY /t REG_BINARY /d "%arma2key%"
@@ -103,13 +100,9 @@ cls
 goto menu
 
 :beta
-if exist Expansion\beta\arma2oa.exe (
-	goto menu
-) else (
-	echo.
-	echo Installing ARMA2_OA_Build_108074...
-	dayz_install\ARMA2_OA_Build_108074.exe
-)
+echo.
+echo Installing ARMA2_OA_Build_108074...
+dayz_install\ARMA2_OA_Build_108074.exe
 cls
 goto menu
 
@@ -154,21 +147,4 @@ echo Please make sure you're using the same Mods and version with the server.
 echo Also you can check your server filter to see if you did something wrong.
 echo.
 pause
-cls & goto menu
-
-:error_35
-echo.
-echo If you're facing the problem of install failure because the command prompt stops at 35%%,
-echo You need to input a command to set a variable and restart your computer to re-install.
-echo This program will input that command for you automatically, press any key to continue.
-echo.
-pause
-bcdedit /set IncreaseUserVA 2990
-cls
-echo.
-echo The command is done on your computer, press any key to reboot your computer now.
-echo Your computer is done with the settings, please re-install the game after the reboot.
-echo.
-pause
-shutdown /r
 cls & goto menu

@@ -4,7 +4,7 @@ set mod=%1
 set map=%2
 
 :start
-echo Section Z Game Launcher v3.3 created by CE28N.
+echo Welcome to Section Z Game Launcher created by CE28N.
 echo Join us at our RaidCall Group: 25597687!
 echo.
 echo Select the mod you want to play by input the mod number.
@@ -88,12 +88,12 @@ if "%map%"=="E" cls & goto start
 
 :start_ace
 cls
-if exist @ACE\addons\ace_anims.pbo (start Expansion\beta\arma2oa.exe -mod=@ACE;@ACEX;@ACEX_RU;@ACEX_SM;@ACEX_USNavy;@CBA;@CBA_A2;@CBA_OA -beta=Expansion\beta;Expansion\beta\Expansion -nosplash -cpuCount=4 -exThreads=1 -maxmem=2047 -noCB) else (goto ace_checkfail)
+if exist @ACE\addons\ace_anims.pbo (start Expansion\beta\arma2oa.exe -mod=@ACE;@ACEX;@ACEX_RU;@ACEX_SM;@ACEX_USNavy;@CBA;@CBA_A2;@CBA_OA -noFilePatching -nosplash -noPause) else (goto ace_checkfail)
 exit
 
 :start_oa
 cls
-if exist Expansion\beta\arma2oa.exe (start Expansion\beta\arma2oa.exe -beta=Expansion\beta;Expansion\beta\Expansion -nosplash -cpuCount=4 -exThreads=1 -maxmem=2047 -noCB) else (goto oa_checkfail)
+if exist Expansion\beta\arma2oa.exe (start Expansion\beta\arma2oa.exe -noFilePatching -nosplash -noPause) else (goto oa_checkfail)
 exit
 
 :ace_checkfail
